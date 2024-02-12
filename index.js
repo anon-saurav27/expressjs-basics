@@ -9,6 +9,8 @@ const app = express();
 // app.listen(8000, () => {
 //   console.log("application is running");
 // });
+app.use(express.json());// to allow json as request body
+
 
 app.use("/", indexRouter);
 
