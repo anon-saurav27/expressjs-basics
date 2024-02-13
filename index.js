@@ -1,19 +1,24 @@
+require("dotenv").config();
+
 const express = require("express");
+const morgan = require("morgan");
+
 const indexRouter = require("./routes");
+const PORT = Number(process.env.PORT);
 
 const app = express();
-// app.get("/", (req, res) => {
-//   res.json({ msg: "hello world" });
-// });
 
-// app.listen(8000, () => {
-//   console.log("application is running");
-// });
-app.use(express.json());// to allow json as request body
-
+app.use(morgan("dev"));
+app.use(express.json()); // to allow json as request body
+app.use("/assets", express.static("public"));
 
 app.use("/", indexRouter);
 
-app.listen(8000, () => {
-  console.log("application is running");
+app.use((err, req, res, next) => {
+  err = err ? toString(err) : "something went wrong";
+  res.status(500).json({ msg: err });
+});
+
+app.listen(PORT, () => {
+  console.log(`application is running at port ${PORT}`);
 });

@@ -11,15 +11,13 @@
 
 // module.exports = router;
 
-const router= require("express").Router();
-const blogRouter=require("../modules/blogs/blog.router");
-const userRouter=require("../modules/users/user.router");
-const catRouter=require("../modules/categories/categorie.router");
-
-
+const router = require("express").Router();
+const blogRouter = require("../modules/blogs/blog.router");
+const userRouter = require("../modules/users/user.router");
+const catRouter = require("../modules/categories/categorie.router");
 
 router.use("/api/v1/blogs", blogRouter);
 router.use("/api/v1/users", userRouter);
 router.use("/api/v1/categories", catRouter);
 
-module.exports=router;
+module.exports = router;
