@@ -1,0 +1,23 @@
+const Joi = require("joi");
+
+const Schema = Joi.object({
+  name: Joi.string().min(3).max(30).required(),
+  email: Joi.string()
+    .email({ minDomainSegments: 1, tlds: { allow: ["com"] } })
+    .required(),
+
+  password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
+
+  isActive: Joi.boolean().strict(),
+  isBlocked: Joi.boolean().strict(),
+
+  age: Joi.number().integer().min(18),
+});
+
+const validate = (req, res, next) => {
+  const { error } = Schema.validate(req.body);
+  if (error) next(error.details[0].message);
+  else next();
+};
+
+module.exports = { validate };

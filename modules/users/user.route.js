@@ -1,7 +1,9 @@
 const router = require("express").Router();
+const { validate } = require("./user.validate");
+const { checkRole } = require("../../utils/sessionManager");
 
 //GET ALL Users
-router.get("/", (req, res) => {
+router.get("/", (req, res, next) => {
   try {
     const { limit, page, search } = req.query; // used for search, sorting and filter
     //DATABASE OPERATION
@@ -12,7 +14,7 @@ router.get("/", (req, res) => {
 });
 
 //? ADD NEW USER
-router.post("/", (req, res) => {
+router.post("/", checkRole(["admin"]), validate, (req, res, next) => {
   try {
     console.log(req.body);
     //DATABASE OPERATION
@@ -23,7 +25,7 @@ router.post("/", (req, res) => {
 });
 
 //? uPDATE SINGLE USER FOR MORE THAN TWO FIELDS
-router.put("/:id", (req, res) => {
+router.put("/:id", (req, res, next) => {
   try {
     const { id } = req.params;
     const data = req.body;
@@ -36,7 +38,7 @@ router.put("/:id", (req, res) => {
 });
 
 //? update single USER SINGLE FIELD
-router.patch("/:id", (req, res) => {
+router.patch("/:id", (req, res, next) => {
   try {
     const { id } = req.params;
     const data = req.body;
@@ -49,7 +51,7 @@ router.patch("/:id", (req, res) => {
 });
 
 //? DELETE SINGLE USER
-router.delete("/:id", (req, res) => {
+router.delete("/:id", (req, res, next) => {
   try {
     console.log(req.params.id);
     //DATABASE OPERTAION

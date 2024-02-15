@@ -3,6 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 
+
+
 const indexRouter = require("./routes");
 const PORT = Number(process.env.PORT);
 
@@ -12,10 +14,11 @@ app.use(morgan("dev"));
 app.use(express.json()); // to allow json as request body
 app.use("/assets", express.static("public"));
 
+
 app.use("/", indexRouter);
 
 app.use((err, req, res, next) => {
-  err = err ? toString(err) : "something went wrong";
+  err = err ? err.toString() : "something went wrong";
   res.status(500).json({ msg: err });
 });
 

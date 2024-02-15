@@ -1,7 +1,7 @@
 {
   "name": "expressjs-basics",
   "version": "1.0.0",
-  "description": "",
+  "description": "1. npm init -y\r 2. npm install express --save\r 3. npm install nodemon --save-dev\r 4. .gitignore\r 5. added node_modules folder in .gitignore\r 6.",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
@@ -13,6 +13,7 @@
   "dependencies": {
     "dotenv": "^16.4.3",
     "express": "^4.18.2",
+    "joi": "^17.12.1",
     "morgan": "^1.10.0"
   },
   "devDependencies": {

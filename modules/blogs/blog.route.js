@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
+router.get("/", (req, res,next) => {
   try{
     res.json({ msg: "hello from blog router" });
   }catch(err){
@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
   };
 });
 
-router.post("/", (req, res) => {
+router.post("/", (req, res,next) => {
   try{
     console.log(req.body);
   res.json({ msg: "hello from post blog router" });
@@ -17,7 +17,7 @@ router.post("/", (req, res) => {
   };
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", (req, res,next) => {
 try{
   const { id } = req.params;
   const data = req.body;
@@ -28,7 +28,7 @@ try{
 }
 });
 
-router.patch("/:id", (req, res) => {
+router.patch("/:id", (req, res,next) => {
   try{
     const { id } = req.params;
   const data = req.body;
@@ -39,7 +39,7 @@ router.patch("/:id", (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", (req, res,next) => {
  try{
   const { id } = req.body;
 
