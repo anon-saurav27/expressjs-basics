@@ -12,6 +12,7 @@ const Schema = Joi.object({
   isBlocked: Joi.boolean().strict(),
 
   age: Joi.number().integer().min(18),
+  country: Joi.string()
 });
 
 const validate = (req, res, next) => {

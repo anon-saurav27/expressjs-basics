@@ -1,19 +1,26 @@
 require("dotenv").config();
 
 const express = require("express");
+const mongoose=require("mongoose");
 const morgan = require("morgan");
-
-
 
 const indexRouter = require("./routes");
 const PORT = Number(process.env.PORT);
 
 const app = express();
 
+mongoose.connect("mongodb://localhost:27017/blog-app").then(()=>{
+  console.log("Database Connected");
+})
+
 app.use(morgan("dev"));
 app.use(express.json()); // to allow json as request body
 app.use("/assets", express.static("public"));
 
+app.use((req,res,next)=>{
+      req.body.country="NEpal";
+      next();
+})
 
 app.use("/", indexRouter);
 
