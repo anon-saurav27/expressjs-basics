@@ -1,20 +1,22 @@
 const router = require("express").Router();
+const {validate} = require("./blog.validate");
+const blogController=require("./blog.controller");
 
 router.get("/", (req, res,next) => {
   try{
     res.json({ msg: "hello from blog router" });
   }catch(err){
-    netx(err);
+    next(err);
   };
 });
 
-router.post("/", (req, res,next) => {
+router.post("/",validate, async(req, res,next) => {
   try{
-    console.log(req.body);
-  res.json({ msg: "hello from post blog router" });
-  }catch(err){
+   const result= await blogController.create(req.body);
+   res.json({data: result});
+  } catch(err){
     next(err);
-  };
+  }
 });
 
 router.put("/:id", (req, res,next) => {

@@ -8,11 +8,11 @@ const Schema = Joi.object({
 
   password: Joi.string().pattern(new RegExp("^[a-zA-Z0-9]{3,30}$")).required(),
 
-  isActive: Joi.boolean().strict(),
-  isBlocked: Joi.boolean().strict(),
+  // isActive: Joi.boolean().strict(),
+  // isBlocked: Joi.boolean().strict(),
 
-  age: Joi.number().integer().min(18),
-  country: Joi.string()
+  // age: Joi.number().integer().min(18),
+  // country: Joi.string()
 });
 
 const validate = (req, res, next) => {

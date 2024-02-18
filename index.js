@@ -17,10 +17,10 @@ app.use(morgan("dev"));
 app.use(express.json()); // to allow json as request body
 app.use("/assets", express.static("public"));
 
-app.use((req,res,next)=>{
-      req.body.country="NEpal";
-      next();
-})
+// app.use((req,res,next)=>{
+//       req.body.country="NEpal";
+//       next();
+// })
 
 app.use("/", indexRouter);
 
