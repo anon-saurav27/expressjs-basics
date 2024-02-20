@@ -1,10 +1,15 @@
 const Joi = require("joi");
 const { uniqueId } = require("lodash");
 
+
 const Schema = Joi.object({
-    aurthor:Joi.string().max(30).required(),
-    username:Joi.string().alphanum().min(3).max(30).required(),
+    author:Joi.string().max(30).required(),
+    title: Joi.string().required(),
+    slug: Joi.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+    content:Joi.string().min(10),
+    status: Joi.array().items(Joi.string().valid('draft', "published")),
     pages: Joi.number(),
+
 });
 
 const validate=(req, res, next)=>{

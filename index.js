@@ -6,6 +6,8 @@ const morgan = require("morgan");
 
 const indexRouter = require("./routes");
 const PORT = Number(process.env.PORT);
+const slugify=require("slugify")
+const bodyParser = require('body-parser');
 
 const app = express();
 
@@ -14,6 +16,7 @@ mongoose.connect("mongodb://localhost:27017/blog-app").then(()=>{
 })
 
 app.use(morgan("dev"));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json()); // to allow json as request body
 app.use("/assets", express.static("public"));
 
