@@ -1,4 +1,6 @@
 const userModel = require("./user.model");
+const {mail}=require("../../services/nodemailer");
+const {hashPassword, comparePassword}=require("../../utils/bcrypt")
 //CRUD
 
 //create
@@ -31,5 +33,19 @@ const removeById=(_id)=>{
     return userModel.deleteOne({_id});
 };
 
+//Register
+ const register=async(payload)=>{
+    payload.password=hashPassword(payload.password);
+    const user=await userModel.create(payload);
+    if (!user) throw new Error("Registration Failed");
 
-module.exports={create, list, getById, updateById,removeById}
+    // email send
+    return mail(
+        user.email,
+        "Registration Completed",
+        "you are successfully registered, thank you"
+    );
+ };
+
+
+module.exports={create, list, getById, updateById,removeById, register}

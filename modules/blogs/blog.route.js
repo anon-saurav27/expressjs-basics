@@ -19,22 +19,22 @@ router.get("/:id", checkRole(["admin", "user"]), async (req, res, next) => {
     // res.json({ msg: "hello from blog router" });
     // const result= await blogController.list();
     // res.json({data:result});
+    // ?const result = await blogController.getById(req.params.id, req.body);
+    // if (!result) {
+    //   return res.status(404).json({ error: "Document not found" });
+    // }
+    // const timeDifference = Date.now() - result.updatedAt.getTime();
+    // let timeAgo;
+
+    // if (timeDifference < 3600000) {
+    //   // less than an hour
+    //   timeAgo = Math.ceil(timeDifference / 60000) + " minutes ago";
+    // } else {
+    //   timeAgo = Math.floor(timeDifference / 3600000) + " hours ago";
+    // }
+
     const result = await blogController.getById(req.params.id, req.body);
-    if (!result) {
-      return res.status(404).json({ error: "Document not found" });
-    }
-    const timeDifference = Date.now() - result.updatedAt.getTime();
-    let timeAgo;
-
-    if (timeDifference < 3600000) {
-      // less than an hour
-      timeAgo = Math.ceil(timeDifference / 60000) + " minutes ago";
-    } else {
-      timeAgo = Math.floor(timeDifference / 3600000) + " hours ago";
-    }
-
-    // const result = await blogController.getById(req.params.id, req.body);
-    res.json({ data: result, timeAgo });
+    res.json({ data: result });
   } catch (err) {
     next(err);
   }

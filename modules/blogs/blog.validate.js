@@ -5,10 +5,10 @@ const { uniqueId } = require("lodash");
 const Schema = Joi.object({
     author:Joi.string().max(30).required(),
     title: Joi.string().required(),
-    slug: Joi.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+    slug: Joi.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/).required(),
     content:Joi.string().min(10),
     status: Joi.array().items(Joi.string().valid('draft', "published")),
-    pages: Joi.number(),
+    
 
 });
 

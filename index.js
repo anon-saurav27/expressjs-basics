@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 
 const app = express();
 
-mongoose.connect("mongodb://localhost:27017/blog-app").then(()=>{
+mongoose.connect(process.env.DB_URL).then(()=>{
   console.log("Database Connected");
 })
 
