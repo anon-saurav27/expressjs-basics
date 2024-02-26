@@ -1,10 +1,11 @@
 const { Schema, model } = require("mongoose");
+const {ObjectId}=Schema.Types;
 
 const blogSchema = new Schema(
   {
-    author: String,
+    author:{type: ObjectId, required:true, },
     title: { type: String, required: true },
-    slug: {type:String, required: true, unique:true},
+    slug: {type:String,ref:"User", required: true, unique:true},
     status: {
       type:String,
       enum:["draft","published"],default:"draft", required:true,
