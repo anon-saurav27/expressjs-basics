@@ -3,7 +3,6 @@ const { mail } = require("../../services/nodemailer");
 const { hashPassword, comparePassword } = require("../../utils/bcrypt");
 const { generateToken, generateRandomToken } = require("../../utils/token");
 //CRUD
-
 //create
 
 const create = (payload) => {

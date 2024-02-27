@@ -11,6 +11,7 @@ const userSchema = new Schema(
       default: "user",
       required: true,
     },
+    pictureUrl:{type:String},
     isActive:{ type:Boolean, default:true, required:true },
     token:{type:String},//fp token
   },
