@@ -60,11 +60,11 @@ router.get(
 //GET ALL Users
 router.get("/", checkRole(["admin", "user"]), async (req, res, next) => {
   try {
-    const { limit, page, search } = req.query; // used for search, sorting and filter
+    const { limit, page, name, role } = req.query; // used for search, sorting and filter
     // //DATABASE OPERATION
     // res.json({ msg: "hello form user router" });
-
-    const result = await userController.list();
+    const search={name, role};
+    const result = await userController.list(search, page, limit);
     res.json({ data: result });
   } catch (err) {
     next(err);

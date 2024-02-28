@@ -14,7 +14,7 @@ const blogSchema = new Schema(
     // pictureUrl:
     // updatedAt: { type: Date, default: Date.now },
     pictureUrl: {type:String},
-    duration:{type:Number, min: 1}
+    duration:{type:Number, min: 1, default:1}
     
   },
   { timestamps: true }

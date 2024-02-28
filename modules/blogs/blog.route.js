@@ -46,17 +46,8 @@ router.post(
   validate,
   async (req, res, next) => {
     try {
-      const { title, author, pages, content, status, updatedAt } = req.body;
-      const slug = slugify(title);
-      const result = await blogController.create({
-        title,
-        slug,
-        author,
-        pages,
-        content,
-        status,
-        updatedAt,
-      });
+      req.body.author= req.body.author || req.currentUser;
+      const result= await blogController.create(req.body);
       res.json({ data: result });
     } catch (err) {
       next(err);
